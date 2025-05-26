@@ -1,0 +1,3 @@
+- name: Test frontend
+  ansible.builtin.debug:
+    msg: Messgae from frontend
