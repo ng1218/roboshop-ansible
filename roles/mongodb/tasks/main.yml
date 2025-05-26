@@ -15,6 +15,6 @@
 
 - name: Enable & Start mongo db service
   ansible.builtin.systemd_service:
-    name: nginx
+    name: mongod
     state: started
     enabled: true
