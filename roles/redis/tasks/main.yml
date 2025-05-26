@@ -6,13 +6,13 @@
     name: redis
     state: latest
 
-- name: Update mongodb listen address
+- name: Update redis listen address
   ansible.builtin.replace:
     path: /etc/redis.conf
     regexp: '127.0.01'
     replace: '0.0.0.0'
 
-- name: Update redis config : protected mode
+- name: Update redis config protected mode
   ansible.builtin.replace:
     path: /etc/redis.conf
     regexp: 'protected-mode yes'
