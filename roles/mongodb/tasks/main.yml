@@ -1,0 +1,20 @@
+# dnf install mongodb-org -y 
+# systemctl enable mongod 
+# systemctl start mongod 
+# systemctl restart mongod
+
+- name: Copy mongo db repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install mongodb
+  ansible.builtin.dnf:
+    name: mongodb-org
+    state: latest
+
+- name: Enable & Start mongo db service
+  ansible.builtin.systemd_service:
+    name: nginx
+    state: started
+    enabled: true
