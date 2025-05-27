@@ -8,4 +8,4 @@
     state: restarted
     name: "{{ app_name }}"
     enabled: true
-    demon_reload: true
+    daemon_reload: true
