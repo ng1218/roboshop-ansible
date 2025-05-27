@@ -8,6 +8,6 @@
     file: pre_app_setup.yml 
 
 - name: Perform npm Install
-  ansible.builtin.shell:  go mod init ${component_name}; go get; go build
+  ansible.builtin.shell:  go mod init {{ app_name }}; go get; go build
   args:
     chdir: /app
