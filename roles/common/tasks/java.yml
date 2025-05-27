@@ -1,0 +1,13 @@
+- name: Install maven
+  ansible.builtin.dnf:
+    name: maven
+    state: present
+
+- name: Invoke app preset role
+  ansible.builtin.include_tasks:
+    file: pre_app_setup.yml 
+
+- name: Perform npm Install
+  ansible.builtin.shell:  mvn clean package; mv target/{{ app_name }}-1.0.jar {{ app_name }}.jar
+  args:
+    chdir: /app
