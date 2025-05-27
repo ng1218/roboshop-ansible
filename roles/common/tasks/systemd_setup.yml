@@ -6,6 +6,6 @@
 - name: Enable and start the app service
   ansible.builtin.systemd_service:
     state: restarted
-    name: {{ app_name }}
+    name: "{{ app_name }}"
     enabled: true
     demon_reload: true
