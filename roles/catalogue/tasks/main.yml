@@ -1,29 +1,18 @@
-# dnf module disable nodejs -y
-dnf module enable nodejs:20 -y
-dnf install nodejs -y
-useradd roboshop
-mkdir /app 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
-cd /app 
-unzip /tmp/catalogue.zip
-cd /app 
-npm install 
-systemctl daemon-reload
-systemctl enable catalogue 
-systemctl start catalogue
 
-- name: Copy mongo db repo file
-  ansible.builtin.copy:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo
-
-- name: Install mongodb
+- name: Install nodejs
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+    
+- name: Install mongodb client
   ansible.builtin.dnf:
-    name: mongodb-org
+    name: mongodb-mongosh
     state: latest
 
-- name: Enable & Start mongo db service
-  ansible.builtin.systemd_service:
-    name: mongod
-    state: started
-    enabled: true
+- name: Load master data
+  ansible.builtin.shell: mongosh --host mongodb-dev.nareshdevops1218.online </app/db/master-data.js
+
+- name: Perform systemd setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd_setup
