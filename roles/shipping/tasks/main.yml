@@ -9,13 +9,13 @@
     state: latest
 
 - name: Load schema
-  ansible.builtin.shell: mysql -h mysql-dev.nareshdevops1218.online -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-dev.nareshdevops1218.online -uroot -p{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/mysql:root_password token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}; < /app/db/schema.sql
 
 - name: Load app user
-  ansible.builtin.shell: mysql -h mysql-dev.nareshdevops1218.online -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-dev.nareshdevops1218.online -uroot -p{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/mysql:root_password token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}; < /app/db/schema.sql
 
 - name: Load master data
-  ansible.builtin.shell: mysql -h mysql-dev.nareshdevops1218.online -uroot -pRoboShop@1 < /app/db/schema.sql
+  ansible.builtin.shell: mysql -h mysql-dev.nareshdevops1218.online -uroot -p{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/mysql:root_password token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}; < /app/db/schema.sql
 
 - name: Perform systemd setup
   ansible.builtin.include_role:
