@@ -1,0 +1,12 @@
+[Unit]
+Description = Cart Service
+[Service]
+User=roboshop
+Environment={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/cart:REDIS_HOST token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }};
+Environment={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/cart:CATALOGUE_HOST token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }};
+Environment={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/cart:CATALOGUE_PORT token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }};
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=cart
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description = User Service
+[Service]
+User=roboshop
+Environment=MONGO=true
+Environment={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/user:REDIS_URL token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }};
+Environment={{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/user:MONGO_URL token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }};
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=user
+
+[Install]
+WantedBy=multi-user.target
