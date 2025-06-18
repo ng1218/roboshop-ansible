@@ -18,4 +18,4 @@
     state: started
     env:
       MONGO_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO_URL token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}"
-      MONGO: true
+      MONGO: "true"
