@@ -10,7 +10,7 @@
       - "8080:8080"
     env:
       MONGO: "true"
-      MONGO_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO_URL token={{ token }} url=http://vault-int.rdevopsb84.online:8200') }}"
+      MONGO_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:MONGO_URL token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}"
 
 - name: Run Catalogue Schema Container
   community.docker.docker_container:
@@ -18,7 +18,7 @@
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     env:
-      DB_TYPE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_TYPE token={{ token }} url=http://vault-int.rdevopsb84.online:8200') }}"
-      APP_GIT_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:APP_GIT_URL token={{ token }} url=http://vault-int.rdevopsb84.online:8200') }}"
-      DB_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_HOST token={{ token }} url=http://vault-int.rdevopsb84.online:8200') }}"
-      SCHEMA_FILE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:SCHEMA_FILE token={{ token }} url=http://vault-int.rdevopsb84.online:8200') }}"
+      DB_TYPE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_TYPE token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}"
+      APP_GIT_URL: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:APP_GIT_URL token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}"
+      DB_HOST: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:DB_HOST token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}"
+      SCHEMA_FILE: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/{{ app_name }}:SCHEMA_FILE token={{ token }} url=http://vault-int.nareshdevops1218.online:8200') }}"
