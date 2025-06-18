@@ -1,0 +1,15 @@
+- name: Download docker repo file
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/rhel/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install docker 
+  ansible.builtin.package:
+    name: docker-ce
+    state: installed
+
+- name: Enable and start docker 
+  ansible.builtin.systemd_service:
+    name: docker
+    state: started
+    enabled: true
